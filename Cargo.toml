@@ -6,3 +6,5 @@ authors = ["Christoph Burgdorf <christoph.burgdorf@bvsn.org>"]
 [dependencies]
 nickel = "*"
 clog = "*"
+rustc-serialize = "*"
+uuid = "*"

@@ -4,6 +4,8 @@ version = "0.1.0"
 dependencies = [
  "clog 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "nickel 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.15 (registry+https://github.com/rust-lang/crates.io-index)",
+ "uuid 0.1.17 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -360,6 +362,15 @@ version = "0.2.36"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "matches 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.15 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "uuid"
+version = "0.1.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "rand 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.15 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
