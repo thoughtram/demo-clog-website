@@ -3,6 +3,7 @@ extern crate nickel;
 extern crate clog;
 extern crate rustc_serialize;
 extern crate uuid;
+extern crate regex;
 
 use nickel::{ Nickel, JsonBody, HttpRouter, StaticFilesHandler };
 use clog_config::ClogConfig;
@@ -16,6 +17,7 @@ mod git;
 mod clog_interop;
 mod clog_config;
 mod clog_result;
+mod url_parser;
 
 fn main() {
     let mut server = Nickel::new();
@@ -28,14 +30,15 @@ fn main() {
         let clog_config = request.json_as::<ClogConfig>().unwrap();
 
         let repo_name = Uuid::new_v4().to_string();
+        let repo_url = url_parser::parse(&clog_config.repository);
 
-        let result = if let Err(err) = git::clone(&clog_config.repository, &repo_name) {
+        let result = if let Err(err) = git::clone(&repo_url, &repo_name) {
             ClogResult {
                 changelog: "".to_owned(),
                 error: err.description().to_owned(),
             }
         } else {
-            let changelog = clog_interop::generate_changelog(&repo_name, &clog_config.repository);
+            let changelog = clog_interop::generate_changelog(&repo_name, &repo_url);
 
             ClogResult {
                 changelog: changelog,
