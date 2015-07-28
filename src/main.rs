@@ -10,7 +10,7 @@ use clog_result::ClogResult;
 use rustc_serialize::json;
 use uuid::Uuid;
 use std::error::Error;
-
+use std::env;
 
 mod git;
 mod clog_interop;
