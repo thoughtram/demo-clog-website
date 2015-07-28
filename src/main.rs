@@ -4,7 +4,7 @@ extern crate clog;
 extern crate rustc_serialize;
 extern crate uuid;
 
-use nickel::{ Nickel, JsonBody, HttpRouter };
+use nickel::{ Nickel, JsonBody, HttpRouter, StaticFilesHandler };
 use clog_config::ClogConfig;
 use clog_result::ClogResult;
 use rustc_serialize::json;
@@ -19,6 +19,9 @@ mod clog_result;
 
 fn main() {
     let mut server = Nickel::new();
+
+    server.utilize(StaticFilesHandler::new("assets"));
+    server.utilize(StaticFilesHandler::new("assets/templates"));
 
     server.post("/generate", middleware! { |request, response|
 
