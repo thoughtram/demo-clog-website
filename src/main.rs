@@ -46,5 +46,10 @@ fn main() {
         json::encode(&result).unwrap()
     });
 
-    server.listen("127.0.0.1:6767");
+    // Look up our server port number in PORT, for compatibility with Heroku.
+    fn get_server_port() -> u16 {
+        env::var("PORT").unwrap_or("6767".to_string()).parse().unwrap()
+    }
+
+    server.listen(("0.0.0.0", get_server_port()));
 }
